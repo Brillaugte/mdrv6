@@ -2,12 +2,12 @@ import type { AppProps } from "next/app";
 import { ThirdwebProvider } from "@thirdweb-dev/react";
 import "../styles/globals.css";
 import Layout from './components/layout';
+import { Mumbai, Arbitrum } from "@thirdweb-dev/chains";
+import WalletComponent from "./components/depositWithdraw";
 
 
-// This is the chain your dApp will work on.
-// Change this to the chain your app is built for.
-// You can also import additional chains from `@thirdweb-dev/chains` and pass them directly.
-const activeChain = "ethereum";
+const activeChain = "Mumbai";
+const address = "0xd0dDF915693f13Cf9B3b69dFF44eE77C901882f8";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -16,6 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       activeChain={activeChain}
     >
       <Component {...pageProps} />
+      {address && <WalletComponent account={address} spender={address} />} 
     </ThirdwebProvider>
   );
 }

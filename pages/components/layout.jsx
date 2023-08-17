@@ -1,14 +1,26 @@
-// components/Layout.js
 import React from 'react';
+import Link from 'next/link';
 
 const Layout = ({ children }) => {
   return (
     <div>
       <nav>
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/dashboard">Dashboard</a></li>
-          <li><a href="/templates">Templates</a></li>
+          <li>
+            <Link href="/">
+              <a>Home</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/dashboard">
+              <a>Dashboard</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/templates">
+              <a>Templates</a>
+            </Link>
+          </li>
         </ul>
       </nav>
       <main>
