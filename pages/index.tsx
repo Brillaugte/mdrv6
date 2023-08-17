@@ -2,6 +2,8 @@ import { ConnectWallet } from "@thirdweb-dev/react";
 import styles from "../styles/Home.module.css";
 import Image from "next/image";
 import { NextPage } from "next";
+import Link from 'next/link';
+
 
 const Home: NextPage = () => {
   return (
@@ -59,47 +61,41 @@ const Home: NextPage = () => {
             </div>
           </a>
 
-          <a
-            href="https://thirdweb.com/dashboard"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              src="/images/dashboard-preview.png"
-              alt="Placeholder preview of starter"
-              width={300}
-              height={200}
-            />
-            <div className={styles.cardText}>
-              <h2 className={styles.gradientText2}>Dashboard ➜</h2>
-              <p>
-                Deploy, configure, and manage your smart contracts from the
-                dashboard.
-              </p>
-            </div>
-          </a>
+          <Link href="/dashboard">
+  <a className={styles.card}>
+    <Image
+      src="/images/dashboard-preview.png"
+      alt="Placeholder preview of starter"
+      width={300}
+      height={200}
+    />
+    <div className={styles.cardText}>
+      <h2 className={styles.gradientText2}>Dashboard ➜</h2>
+      <p>
+        Deploy, configure, and manage your smart contracts from the
+        dashboard.
+      </p>
+    </div>
+  </a>
+</Link>
 
-          <a
-            href="https://thirdweb.com/templates"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              src="/images/templates-preview.png"
-              alt="Placeholder preview of templates"
-              width={300}
-              height={200}
-            />
-            <div className={styles.cardText}>
-              <h2 className={styles.gradientText3}>Templates ➜</h2>
-              <p>
-                Discover and clone template projects showcasing thirdweb
-                features.
-              </p>
-            </div>
-          </a>
+          <Link href="/trading">
+    <a className={styles.card}>
+    <Image
+      src="/images/templates-preview.png"
+      alt="Placeholder preview of templates"
+      width={300}
+      height={200}
+    />
+    <div className={styles.cardText}>
+      <h2 className={styles.gradientText3}>Templates ➜</h2>
+      <p>
+        Discover and clone template projects showcasing thirdweb
+        features.
+      </p>
+    </div>
+  </a>
+</Link>
         </div>
       </div>
     </main>
