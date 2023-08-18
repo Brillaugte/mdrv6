@@ -8,6 +8,7 @@ import {useState} from 'react';
 import DepositComponent from './components/deposit';
 import PythComponent from './components/pyth';
 import DeployPriceFeedComponent from './components/deployPriceFeed';
+import QuoteDisplayComponent from './components/display/quote';
 
 
 
@@ -31,6 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <DepositComponent />
         <PythComponent />
         <DeployPriceFeedComponent />
+        <QuoteDisplayComponent />
     </div>
       
     </ThirdwebProvider>

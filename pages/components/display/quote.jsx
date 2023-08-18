@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useContractEvents, useContract } from "@thirdweb-dev/react";
 
 
-function App() {
+export default function QuoteDisplayComponent() {
   const [address, setAddress] = useState("0xd0dDF915693f13Cf9B3b69dFF44eE77C901882f8");
   const contractAddress = '0x5275396224FCbCb9Eb1217fc6Fae4B3DDe05A1a2'
 
