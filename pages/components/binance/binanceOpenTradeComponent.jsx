@@ -1,88 +1,51 @@
 import React, { useState } from 'react';
-import ccxt from 'ccxt';
+import axios from 'axios';
 
-const BinanceOpenTradeComponent = () => {
-    const [symbol, setSymbol] = useState('BTC/USDT');
-    const [side, setSide] = useState('buy');
-    const [amount, setAmount] = useState(1);
-    const [price, setPrice] = useState(0);
-    const [orderResponse, setOrderResponse] = useState(null);
+const binanceOpenTradeComponent = () => {
+  const [symbol, setSymbol] = useState('');
+  const [side, setSide] = useState('BUY');
+  const [amount, setAmount] = useState('');
+  const [price, setPrice] = useState('');
 
-    const handleSubmit = async () => {
-        try {
-            const response = await fetch('/api/binance', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    symbol: symbol,
-                    side: side,
-                    amount: amount,
-                    price: price
-                })
-            });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://127.0.0.1:5000/open_trade', {
+        symbol,
+        side,
+        amount,
+        price,
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-            console.log('API Response:', response);
-
-            if (response.status !== 200) {
-                console.error('API Error:', response.status, response.statusText);
-                return;
-            }
-
-            const responseText = await response.text();
-            console.log('API Response Text:', responseText);
-
-            try {
-                const order = JSON.parse(responseText);
-                setOrderResponse(order);
-            } catch (error) {
-                console.error('JSON Parsing Error:', error);
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-    return (
-        <div>
-            <h1>Binance Future Testnet Trade</h1>
-            <form onSubmit={(e) => e.preventDefault()}>
-                <label>
-                    Symbol:
-                    <input value={symbol} onChange={(e) => setSymbol(e.target.value)} />
-                </label>
-                <label>
-                    Side:
-                    <select value={side} onChange={(e) => setSide(e.target.value)}>
-                        <option value="buy">Buy</option>
-                        <option value="sell">Sell</option>
-                    </select>
-                </label>
-                <label>
-                    Amount:
-                    <input
-                        type="number"
-                        value={amount}
-                        onChange={(e) => setAmount(parseFloat(e.target.value))}
-                    />
-                </label>
-                <label>
-                    Price:
-                    <input
-                        type="number"
-                        value={price}
-                        onChange={(e) => setPrice(parseFloat(e.target.value))}
-                    />
-                </label>
-                <button onClick={handleSubmit}>Submit</button>
-            </form>
-            <div>
-                <h2>Order Response</h2>
-                <pre>{JSON.stringify(orderResponse, null, 2)}</pre>
-            </div>
-        </div>
-    );
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Symbol:
+        <input type="text" value={symbol} onChange={(e) => setSymbol(e.target.value)} />
+      </label>
+      <label>
+        Side:
+        <select value={side} onChange={(e) => setSide(e.target.value)}>
+          <option value="BUY">Buy</option>
+          <option value="SELL">Sell</option>
+        </select>
+      </label>
+      <label>
+        Amount:
+        <input type="text" value={amount} onChange={(e) => setAmount(e.target.value)} />
+      </label>
+      <label>
+        Price:
+        <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
+      </label>
+      <button type="submit">Open Trade</button>
+    </form>
+  );
 };
 
-export default BinanceOpenTradeComponent;
+export default binanceOpenTradeComponent;
