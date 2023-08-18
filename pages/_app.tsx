@@ -6,6 +6,7 @@ import { Mumbai, Arbitrum } from "@thirdweb-dev/chains";
 import { Web3Button } from '@thirdweb-dev/react';
 import {useState} from 'react';
 import DepositComponent from './components/deposit';
+import PythComponent from './components/pyth';
 
 
 
@@ -28,6 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         </Layout>
         <div>
         <DepositComponent />
+        <PythComponent />
     </div>
       
     </ThirdwebProvider>
