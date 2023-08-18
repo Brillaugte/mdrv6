@@ -17,12 +17,17 @@ const MDRV = "0x5275396224FCbCb9Eb1217fc6Fae4B3DDe05A1a2"; // MDRV contract
 function MyApp({ Component, pageProps }: AppProps) {
   const [amount, setAmount] = useState('');
 
+
   return (
-<div>
+    <ThirdwebProvider
+      activeChain={Mumbai}
+      
+      clientId="3872f830028481ed73e2103b84ae94b7"
+    >
       <Layout>
         <Component {...pageProps} />
         </Layout>
-        
+        <div>
         <label>
         Enter the desired amount:
         <input
@@ -57,6 +62,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         withdraw
       </Web3Button>
     </div>
+      
+    </ThirdwebProvider>
 
   );
 }
