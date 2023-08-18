@@ -1,4 +1,44 @@
-import { useContract, useContractWrite } from "@thirdweb-dev/react";
+import React, { useState, useEffect } from 'react';
+import { EvmPriceServiceConnection } from "@pythnetwork/pyth-evm-js";
+
+export default function PythComponent() {
+  const [priceIds, setPriceIds] = useState<string[]>([]);
+  const [currentId, setCurrentId] = useState('');
+  const [updateData, setUpdateData] = useState<any[]>([]);
+
+  useEffect(() => {
+    const updatePriceFeed = async () => {
+      const connection = new EvmPriceServiceConnection("https://xc-testnet.pyth.network");
+
+      if(priceIds.length > 0) {
+        const data = await connection.getPriceFeedsUpdateData(priceIds);
+        setUpdateData(data);
+      }
+    }
+
+    updatePriceFeed();
+  }, [priceIds]);
+
+  const addPriceId = () => {
+    setPriceIds([...priceIds, currentId]);
+    setCurrentId('');
+  }
+
+  return (
+    <div>
+      <input type="text" value={currentId} onChange={e => setCurrentId(e.target.value)} placeholder="Enter price ID" />
+      <button onClick={addPriceId}>Add</button>
+      {updateData.length > 0 && (
+        <div>
+          <h3>Updated Data:</h3>
+          <pre>{JSON.stringify(updateData, null, 2)}</pre>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* import { useContract, useContractWrite } from "@thirdweb-dev/react";
 import React, { useState, useEffect } from 'react';
 import {EvmPriceServiceConnection} from "@pythnetwork/pyth-evm-js";
 
@@ -49,3 +89,4 @@ export default function PythComponent() {
         </div>
     );
 }
+*/
