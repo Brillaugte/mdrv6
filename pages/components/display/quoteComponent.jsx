@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { useContractEvents, useContract } from "@thirdweb-dev/react";
 
-
 export default function QuoteDisplayComponent() {
   const [address, setAddress] = useState("0xd0dDF915693f13Cf9B3b69dFF44eE77C901882f8");
-  const contract = '0x5275396224FCbCb9Eb1217fc6Fae4B3DDe05A1a2'
+  const contractAddress = '0x5275396224FCbCb9Eb1217fc6Fae4B3DDe05A1a2';
+
+  const { contract, error: contractError } = useContract(contractAddress);
+  
+  if (contractError) {
+    return <div>Error initializing contract: {contractError.message}</div>;
+  }
 
   const { data: dataA, isLoading: isLoadingA, error: errorA } = useContractEvents(
     contract,
