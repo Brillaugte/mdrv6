@@ -10,7 +10,7 @@ import PythComponent from './components/MDRV/pyth';
 import DeployPriceFeedComponent from './components/MDRV/deployPriceFeed';
 import QuoteDisplayComponent from './components/display/quoteComponent';
 import BalanceComponent from './components/display/balanceComponent';
-import BinanceOpenTradeComponent from './components/binance/binanceOpenTradeComponent';
+//import BinanceOpenTradeComponent from '../../solidity/binanceOpenTradeComponent';
 import AssetSelector from './components/MDRV/AssetSelector';
 
 
@@ -48,15 +48,16 @@ function MyApp({ Component, pageProps }: AppProps) {
         <QuoteDisplayComponent />
         <BalanceComponent />
         
+
+        
     </div>
       
     </ThirdwebProvider>
     
     
-  <BinanceOpenTradeComponent />
   </div>
 
   );
-}
+} //<BinanceOpenTradeComponent />
 
 export default MyApp;
