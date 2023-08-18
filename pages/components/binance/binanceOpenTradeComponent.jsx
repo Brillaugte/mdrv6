@@ -16,7 +16,7 @@ const BinanceOpenTradeComponent = () => {
                 enableRateLimit: true,
             });
 
-            exchange.urls['api'] = exchange.urls['test']; // Use the testnet
+            exchange.setSandboxMode (true)
 
             const order = await exchange.createOrder(symbol, 'limit', side, amount, price);
 
