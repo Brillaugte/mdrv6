@@ -14,13 +14,11 @@ export default function BalanceComponent() {
 
   useEffect(() => {
     const fetchBalances = async () => {
-      const result1 = await useContractRead(contract1, "balanceOf", [account]);
-      const result2 = await useContractRead(contract2, "balanceOf", [account]);
-      setBalance1(result1.data);
-      setBalance2(result2.data);
+      const { data: balanceData1 } = useContractRead(contract1, "balanceOf", [account]);
+      const { data: balanceData2 } = useContractRead(contract2, "balanceOf", [account]);
+      setBalance1(balanceData1);
+      setBalance2(balanceData2);
     };
-
-    fetchBalances();
 
     const intervalId = setInterval(() => {
       fetchBalances();

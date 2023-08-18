@@ -14,6 +14,8 @@
     "@pythnetwork/pyth-evm-js": "^1.25.0",
     "@thirdweb-dev/react": "^3",
     "@thirdweb-dev/sdk": "^3",
+    "ccxt": "^4.0.67",
+    "dotenv": "^16.3.1",
     "ethers": "^5",
     "next": "^13",
     "react": "^18.2",
