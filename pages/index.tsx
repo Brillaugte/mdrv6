@@ -14,20 +14,16 @@ const Home: NextPage = () => {
             Welcome to{" "}
             <span className={styles.gradientText0}>
               <a
-                href="https://thirdweb.com/"
+                href="https://microderiv.com/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                thirdweb.
+                microderiv.
               </a>
             </span>
           </h1>
 
-          <p className={styles.description}>
-            Get started by configuring your desired network in{" "}
-            <code className={styles.code}>src/index.js</code>, then modify the{" "}
-            <code className={styles.code}>src/App.js</code> file!
-          </p>
+
 
           <div className={styles.connect}>
             <ConnectWallet
@@ -40,26 +36,7 @@ const Home: NextPage = () => {
         </div>
 
         <div className={styles.grid}>
-          <a
-            href="https://portal.thirdweb.com/"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              src="/images/portal-preview.png"
-              alt="Placeholder preview of starter"
-              width={300}
-              height={200}
-            />
-            <div className={styles.cardText}>
-              <h2 className={styles.gradientText1}>Portal ➜</h2>
-              <p>
-                Guides, references, and resources that will help you build with
-                thirdweb.
-              </p>
-            </div>
-          </a>
+          
 
           <Link href="/dashboard">
   <a className={styles.card}>
