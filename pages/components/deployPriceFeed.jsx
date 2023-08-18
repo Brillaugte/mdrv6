@@ -1,43 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { Web3Button } from '@thirdweb-dev/react';
-import pairsData from './pythID.json'; // Import the JSON data
+import pairsData from './updated_pairs_corrected.json'; // Import the JSON data
 
-export default function DeployPriceFeedComponent() {
+export default function Component() {
+  const [a1, setA1] = useState('');
   const [u1, setU1] = useState('');
   const [o1, setO1] = useState('');
   const [p_id, setP_id] = useState('');
   const [a3, setA3] = useState('');
   const [pairs, setPairs] = useState({}); // Store cryptocurrency pairs and contract addresses
+  const [search, setSearch] = useState(''); // Store the search input value
 
   // Load the JSON data extracted from the file into the component
   useEffect(() => {
     setPairs(pairsData);
   }, []);
 
-  const a1 = '0xff1a0f4744e8582DF1aE09D5611b887B6a12925C'; // Contract address
-
   const handlePairChange = (e) => {
     const selectedPair = e.target.value;
-    const address = pairs[selectedPair];
-    setA3(selectedPair + ' ' + address); // Concatenate the selected pair and address
+    const address = pairs[selectedPair]?.address;
+    setA3(address);
   };
+
+  const filteredPairs = Object.keys(pairs).filter((pair) => pair.toLowerCase().includes(search.toLowerCase()));
 
   return (
     <div style={{ padding: '16px', fontFamily: 'Arial, sans-serif' }}>
       <h2>Deploy Price Feed</h2>
       <label>
-        Select pair:
-        <select value={a3.split(' ')[0]} onChange={handlePairChange} style={{ marginLeft: '8px', padding: '4px' }}>
-          <option value="" disabled>Select a pair</option>
-          {Object.keys(pairs).map((pair) => (
-            <option key={pair} value={pair}>{pair}</option>
-          ))}
-        </select>
+        Search pair:
+        <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} style={{ marginLeft: '8px', padding: '4px', width: '400px' }} />
       </label>
       <br />
       <label>
-        Or manually enter pair and address: 
-        <input type="text" value={a3} onChange={(e) => setA3(e.target.value)} style={{ marginLeft: '8px', padding: '4px', width: '400px' }} />
+        Select pair:
+        <select value={a3} onChange={handlePairChange} style={{ marginLeft: '8px', padding: '4px', width: '400px' }}>
+          <option value="" disabled>Select a pair</option>
+          {filteredPairs.map((pair) => (
+            <option key={pair} value={pair}>{pair}</option>
+          ))}
+        </select>
       </label>
       <br />
       <label>
