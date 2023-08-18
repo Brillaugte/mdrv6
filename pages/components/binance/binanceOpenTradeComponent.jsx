@@ -1,16 +1,18 @@
-const BinanceTrade = () => {
+import React, { useState } from 'react';
+import ccxt from 'ccxt';
+
+const BinanceOpenTradeComponent = () => {
     const [symbol, setSymbol] = useState('BTC/USDT');
     const [side, setSide] = useState('buy');
     const [amount, setAmount] = useState(1);
     const [price, setPrice] = useState(0);
     const [orderResponse, setOrderResponse] = useState(null);
-    const [error, setError] = useState(null);
 
     const handleSubmit = async () => {
         try {
             const exchange = new ccxt.binance({
-                apiKey: process.env.REACT_APP_BINANCE_API_KEY,
-                secret: process.env.REACT_APP_BINANCE_SECRET_KEY,
+                apiKey: "cd7c7de7b3068e692c46194d62f2b58031fa7961456edbd65f5e9bacb2eb7f33",
+                secret: "85db7398d30172cad2d2cf0c44ee43e846e00747bb75eea2bf3c16ca4186b50c",
                 enableRateLimit: true,
             });
 
@@ -20,7 +22,6 @@ const BinanceTrade = () => {
 
             setOrderResponse(order);
         } catch (error) {
-            setError(error.toString());
             console.error(error);
         }
     };
@@ -58,20 +59,12 @@ const BinanceTrade = () => {
                 </label>
                 <button onClick={handleSubmit}>Submit</button>
             </form>
-            {error && (
-                <div>
-                    <h2>Error</h2>
-                    <pre>{error}</pre>
-                </div>
-            )}
-            {orderResponse && (
-                <div>
-                    <h2>Order Response</h2>
-                    <pre>{JSON.stringify(orderResponse, null, 2)}</pre>
-                </div>
-            )}
+            <div>
+                <h2>Order Response</h2>
+                <pre>{JSON.stringify(orderResponse, null, 2)}</pre>
+            </div>
         </div>
     );
 };
 
-export default BinanceTrade;
+export default BinanceOpenTradeComponent;
