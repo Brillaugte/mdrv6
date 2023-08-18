@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Web3Button } from '@thirdweb-dev/react';
-import pairsData from '../pythID.json'; // Import the JSON data
+import pairsData from './pythID.json'; // Import the JSON data
 
 export default function Component() {
   const [a1, setA1] = useState('');

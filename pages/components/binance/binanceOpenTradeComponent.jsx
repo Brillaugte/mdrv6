@@ -11,8 +11,8 @@ const BinanceOpenTradeComponent = () => {
     const handleSubmit = async () => {
         try {
             const exchange = new ccxt.binance({
-                apiKey: process.env.REACT_APP_BINANCE_API_KEY,
-                secret: process.env.REACT_APP_BINANCE_SECRET_KEY,
+                apiKey: "cd7c7de7b3068e692c46194d62f2b58031fa7961456edbd65f5e9bacb2eb7f33",
+                secret: "85db7398d30172cad2d2cf0c44ee43e846e00747bb75eea2bf3c16ca4186b50c",
                 enableRateLimit: true,
             });
 
