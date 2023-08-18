@@ -7,6 +7,7 @@ import { Web3Button } from '@thirdweb-dev/react';
 import {useState} from 'react';
 import DepositComponent from './components/deposit';
 import PythComponent from './components/pyth';
+import DeployPriceFeedComponent from './components/deployPriceFeed';
 
 
 
@@ -15,7 +16,6 @@ const MDRV = "0x5275396224FCbCb9Eb1217fc6Fae4B3DDe05A1a2"; // MDRV contract
 //const events = await contract.events.getEvents("Quote");
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [amount, setAmount] = useState('');
 
 
   return (
@@ -30,6 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <div>
         <DepositComponent />
         <PythComponent />
+        <DeployPriceFeedComponent />
     </div>
       
     </ThirdwebProvider>
