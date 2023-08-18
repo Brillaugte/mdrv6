@@ -3,10 +3,10 @@ import { Web3Button } from '@thirdweb-dev/react';
 import pairsData from './pythID.json'; // Import the JSON data
 
 export default function Component() {
-  const [a1, setA1] = useState('');
-  const [u1, setU1] = useState('');
-  const [o1, setO1] = useState('');
-  const [p_id, setP_id] = useState('');
+  const [a1, setA1] = useState(''); // a1 will be set based on the selected oracle
+  const [u1, setU1] = useState('1'); // Set initial value of u1
+  const [o1, setO1] = useState(''); // User chooses an oracle from the list
+  const [p_id, setP_id] = useState('0'); // Set initial value of p_id
   const [a3, setA3] = useState('');
   const [pairs, setPairs] = useState({}); // Store cryptocurrency pairs and contract addresses
   const [search, setSearch] = useState(''); // Store the search input value
@@ -20,6 +20,25 @@ export default function Component() {
     const selectedPair = e.target.value;
     const address = pairs[selectedPair]?.address;
     setA3(address);
+  };
+
+  const handleOracleChange = (e) => {
+    const selectedOracle = e.target.value;
+    // Map the oracle name to the corresponding number
+    const oracleMapping = {
+      Dummy: '0',
+      Chainlink: '1',
+      Pyth: '2',
+      Custom: '3',
+    };
+    setO1(oracleMapping[selectedOracle]);
+
+    // Set a1 based on the selected oracle
+    const a1Mapping = {
+      Chainlink: '0x326C977E6efc84E512bB9C30f76E30c160eD06FB',
+      Pyth: '0xff1a0f4744e8582DF1aE09D5611b887B6a12925C',
+    };
+    setA1(a1Mapping[selectedOracle]);
   };
 
   const filteredPairs = Object.keys(pairs).filter((pair) => pair.toLowerCase().includes(search.toLowerCase()));
@@ -43,18 +62,16 @@ export default function Component() {
       </label>
       <br />
       <label>
-        U1: <input type="text" value={u1} onChange={(e) => setU1(e.target.value)} style={{ marginLeft: '8px', padding: '4px' }} />
+        Select Oracle:
+        <select value={o1} onChange={handleOracleChange} style={{ marginLeft: '8px', padding: '4px', width: '400px' }}>
+          <option value="" disabled>Select an Oracle</option>
+          <option value="Dummy">Dummy</option>
+          <option value="Chainlink">Chainlink</option>
+          <option value="Pyth">Pyth</option>
+          <option value="Custom">Custom</option>
+        </select>
       </label>
       <br />
-      <label>
-        O1: <input type="text" value={o1} onChange={(e) => setO1(e.target.value)} style={{ marginLeft: '8px', padding: '4px' }} />
-      </label>
-      <br />
-      <label>
-        P_ID: <input type="text" value={p_id} onChange={(e) => setP_id(e.target.value)} style={{ marginLeft: '8px', padding: '4px' }} />
-      </label>
-      <br />
-
       <Web3Button
         contractAddress="0x5275396224FCbCb9Eb1217fc6Fae4B3DDe05A1a2"
         action={(contract) => {

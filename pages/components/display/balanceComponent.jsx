@@ -20,6 +20,14 @@ export default function BalanceComponent() {
   const balance1 = useContractRead(contract1, "balanceOf", [account, reloadKey]);
   const balance2 = useContractRead(contract2, "b", [account, reloadKey]);
 
+  if (balance1.isLoading || balance2.isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (balance1.error || balance2.error) {
+    return <div>Error loading balances</div>;
+  }
+
   return (
     <div>
       <div>
