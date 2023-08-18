@@ -35,7 +35,14 @@ function MyApp({ Component, pageProps }: AppProps) {
           onChange={(e) => setAmount(e.target.value)}
         />
       </label>
-
+      <Web3Button
+        contractAddress="0x300f5ECE2c9D4265C9DA9021582ed1B71F403549"
+        action={(contract) => {
+          contract.call('approve', ["0x5275396224FCbCb9Eb1217fc6Fae4B3DDe05A1a2", amount]);
+        }}
+      >
+        approve
+      </Web3Button>
       <Web3Button
         contractAddress="0x5275396224FCbCb9Eb1217fc6Fae4B3DDe05A1a2"
         action={(contract) => {
