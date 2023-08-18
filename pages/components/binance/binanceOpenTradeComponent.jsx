@@ -50,5 +50,5 @@ import axios from 'axios';
       );
     };
     
-    export default OpenTrade;
+    export default BinanceOpenTradeComponent;
     
