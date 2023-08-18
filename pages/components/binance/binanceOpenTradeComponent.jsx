@@ -10,16 +10,20 @@ const BinanceOpenTradeComponent = () => {
 
     const handleSubmit = async () => {
         try {
-            const exchange = new ccxt.binance({
-                apiKey: "cd7c7de7b3068e692c46194d62f2b58031fa7961456edbd65f5e9bacb2eb7f33",
-                secret: "85db7398d30172cad2d2cf0c44ee43e846e00747bb75eea2bf3c16ca4186b50c",
-                enableRateLimit: true,
+            const response = await fetch('/api/binance', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    symbol: symbol,
+                    side: side,
+                    amount: amount,
+                    price: price
+                })
             });
-
-            exchange.setSandboxMode (true)
-
-            const order = await exchange.createOrder(symbol, 'limit', side, amount, price);
-
+    
+            const order = await response.json();
             setOrderResponse(order);
         } catch (error) {
             console.error(error);

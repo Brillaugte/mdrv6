@@ -11,13 +11,21 @@ import DeployPriceFeedComponent from './components/MDRV/deployPriceFeed';
 import QuoteDisplayComponent from './components/display/quoteComponent';
 import BalanceComponent from './components/display/balanceComponent';
 import BinanceOpenTradeComponent from './components/binance/binanceOpenTradeComponent';
+import AssetSelector from './components/MDRV/AssetSelector';
+
 
 const Myaddress = "0xd0dDF915693f13Cf9B3b69dFF44eE77C901882f8";
 const MDRV = "0x5275396224FCbCb9Eb1217fc6Fae4B3DDe05A1a2"; // MDRV contract
 //const events = await contract.events.getEvents("Quote");
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [selectedAssetAddress, setSelectedAssetAddress] = useState('');
+  const [selectedAssetName, setSelectedAssetName] = useState('');
 
+  const handleAssetSelection = (address : string, assetName : string) => {
+    setSelectedAssetAddress(address);
+    setSelectedAssetName(assetName);
+  };
 
   return (
     <div>
@@ -31,6 +39,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         </Layout>
         <div>
         <DepositComponent />
+        <AssetSelector
+        initialA3={selectedAssetAddress}
+        onAssetSelected={handleAssetSelection}
+      />
         <PythComponent />
         <DeployPriceFeedComponent />
         <QuoteDisplayComponent />
