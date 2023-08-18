@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const binanceOpenTradeComponent = () => {
+const BinanceOpenTradeComponent = () => {
   const [symbol, setSymbol] = useState('');
   const [side, setSide] = useState('BUY');
   const [amount, setAmount] = useState('');
@@ -10,7 +10,7 @@ const binanceOpenTradeComponent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:5000/open_trade', {
+      const response = await axios.post('http://localhost:5000/open_trade', {
         symbol,
         side,
         amount,
@@ -48,4 +48,4 @@ const binanceOpenTradeComponent = () => {
   );
 };
 
-export default binanceOpenTradeComponent;
+export default BinanceOpenTradeComponent;
