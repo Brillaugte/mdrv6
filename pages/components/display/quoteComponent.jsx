@@ -6,10 +6,6 @@ export default function QuoteDisplayComponent() {
   const contractAddress = '0x5275396224FCbCb9Eb1217fc6Fae4B3DDe05A1a2';
 
   const { contract, error: contractError } = useContract(contractAddress);
-  
-  if (contractError) {
-    return <div>Error initializing contract: {contractError.message}</div>;
-  }
 
   const { data: dataA, isLoading: isLoadingA, error: errorA } = useContractEvents(
     contract,
@@ -38,7 +34,7 @@ export default function QuoteDisplayComponent() {
   );
 
   const isLoading = isLoadingA || isLoadingB;
-  const error = errorA || errorB;
+  const error = errorA || errorB || contractError;
   const data = [...(dataA || []), ...(dataB || [])];
 
   if (isLoading) {
