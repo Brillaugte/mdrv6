@@ -1,0 +1,46 @@
+a1 = "0xff1a0f4744e8582DF1aE09D5611b887B6a12925C"
+      u1 = 10000
+      o1 = 0
+      p_id = oracle
+      a3 = address
+      data = contract.call("deployPriceFeed", [a1, u1, o1, p_id, a3])
+      
+    
+    _MDRVgetPrice(uint256 p_id, uint256 exp, bytes[] calldata _updateData) external returns (uint256 price);
+    setDummyPrice(uint256 p_id, int256 _price)
+    deployPriceFeed( address a1, uint256 u1, _Oracle o1, uint256 p_id, bytes32 a3) 
+
+    _MDRVdeposit(uint256 _amount) external;
+    
+# User
+    _MDRVdeposit(uint256 _amount) external; //approveToken
+    _MDRVquote(address[4] memory _address,uint256[12] memory _uint256) external;
+    _MDRVcancelClose( uint256 q_id )external;
+
+    _MDRVcloseQuote( uint256[3] memory u, address initiator) external;
+    _MDRVcancelCloseQuote( uint256 c_id ) external;
+    _MDRVcloseMarket( uint256 c_id, uint256 max_delay ) external;
+    
+# Automatize 
+    _MDRVget_b(address _address) external view returns (uint256);
+    // check event
+    search for each address where Id where State = 1 // show ID
+    search for each address where Id where State = 0 // show ID
+
+[PRIVATE_KEY] 
+# Hedger
+    _MDRVdeposit(uint256 _amount) external; //approveToken
+    _MDRVacceptQuote(uint256 _id) external;
+    _MDRVacceptClose( uint256 q_id ) external;
+    Binance.getTrades
+    Binance.OpenTrade
+    Binance.CloseTrade
+    Binance.
+
+# Bot
+    _MDRVliquidate( uint256 c_id )external;
+    _MDRVsettlement(uint256 c_id)external;
+
+
+#
+
