@@ -1,21 +1,40 @@
+import React, { useState } from "react";
 import { useContractEvents, useContract } from "@thirdweb-dev/react";
 
-const contractAddress = "{{contract_address}}"; // Replace with your smart contract address
 
-export default function quoteDisplayComponent() {
-  const { contract } = useContract(contractAddress);
-  const { data, isLoading, error } = useContractEvents(
+function App() {
+  const [address, setAddress] = useState("0xd0dDF915693f13Cf9B3b69dFF44eE77C901882f8");
+  const contractAddress = '0x5275396224FCbCb9Eb1217fc6Fae4B3DDe05A1a2'
+
+  const { data: dataA, isLoading: isLoadingA, error: errorA } = useContractEvents(
     contract,
     "Quote",
     {
       queryFilter: {
         filters: {
-          p_A: "0xd0dDF915693f13Cf9B3b69dFF44eE77C901882f8", // Replace with the specific address you're interested in
+          p_A: address,
         },
       },
       subscribe: true,
     },
   );
+
+  const { data: dataB, isLoading: isLoadingB, error: errorB } = useContractEvents(
+    contract,
+    "Quote",
+    {
+      queryFilter: {
+        filters: {
+          p_B: address,
+        },
+      },
+      subscribe: true,
+    },
+  );
+
+  const isLoading = isLoadingA || isLoadingB;
+  const error = errorA || errorB;
+  const data = [...(dataA || []), ...(dataB || [])];
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -29,6 +48,11 @@ export default function quoteDisplayComponent() {
 
   return (
     <div>
+      <input
+        type="text"
+        value={address}
+        onChange={e => setAddress(e.target.value)}
+      />
       {ids.map(id => (
         <div key={id}>{id}</div>
       ))}
