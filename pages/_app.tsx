@@ -8,11 +8,10 @@ import {useState} from 'react';
 import DepositComponent from './components/deposit';
 import PythComponent from './components/pyth';
 import DeployPriceFeedComponent from './components/deployPriceFeed';
-import QuoteDisplayComponent from './components/display/quote';
+import QuoteDisplayComponent from './components/display/quoteComponent';
+import BalanceComponent from './components/display/balanceComponent';
 
-
-
-const address = "0xd0dDF915693f13Cf9B3b69dFF44eE77C901882f8";
+const Myaddress = "0xd0dDF915693f13Cf9B3b69dFF44eE77C901882f8";
 const MDRV = "0x5275396224FCbCb9Eb1217fc6Fae4B3DDe05A1a2"; // MDRV contract
 //const events = await contract.events.getEvents("Quote");
 
@@ -33,6 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <PythComponent />
         <DeployPriceFeedComponent />
         <QuoteDisplayComponent />
+        <BalanceComponent />
     </div>
       
     </ThirdwebProvider>
