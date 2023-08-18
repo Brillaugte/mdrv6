@@ -22,9 +22,23 @@ const BinanceOpenTradeComponent = () => {
                     price: price
                 })
             });
-    
-            const order = await response.json();
-            setOrderResponse(order);
+
+            console.log('API Response:', response);
+
+            if (response.status !== 200) {
+                console.error('API Error:', response.status, response.statusText);
+                return;
+            }
+
+            const responseText = await response.text();
+            console.log('API Response Text:', responseText);
+
+            try {
+                const order = JSON.parse(responseText);
+                setOrderResponse(order);
+            } catch (error) {
+                console.error('JSON Parsing Error:', error);
+            }
         } catch (error) {
             console.error(error);
         }
