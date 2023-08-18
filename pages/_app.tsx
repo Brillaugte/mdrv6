@@ -43,7 +43,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         initialA3={selectedAssetAddress}
         onAssetSelected={handleAssetSelection}
       />
-        <PythComponent />
+        <PythComponent _address={selectedAssetAddress} />
         <DeployPriceFeedComponent />
         <QuoteDisplayComponent />
         <BalanceComponent />
