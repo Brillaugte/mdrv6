@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Web3Button } from '@thirdweb-dev/react';
-import AssetSelector from '../../../../solidity/AssetSelector'; // Import the AssetSelector component
+//import AssetSelector from '../../../../solidity/AssetSelector'; // Import the AssetSelector component
 
 export default function Component() {
+  const address = '0xd0dDF915693f13Cf9B3b69dFF44eE77C901882f8'; // Default address
   const [a1, setA1] = useState('');
   const [u1, setU1] = useState('1');
   const [o1, setO1] = useState('');
@@ -29,7 +30,7 @@ export default function Component() {
   return (
     <div style={{ padding: '16px', fontFamily: 'Arial, sans-serif' }}>
       <h2>Deploy Price Feed</h2>
-      <AssetSelector initialA3={a3} onAssetSelected={(address, assetName) => setA3(address)} />
+      
       <br />
       <label>
         Select Oracle:
