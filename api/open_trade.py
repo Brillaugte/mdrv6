@@ -1,7 +1,6 @@
 from http.server import BaseHTTPRequestHandler
-import ccxt
-import os
 import json
+from initialize_ccxt import initialize_ccxt
 
 class handler(BaseHTTPRequestHandler):
 
@@ -11,20 +10,11 @@ class handler(BaseHTTPRequestHandler):
         post_data = json.loads(post_data)
 
         symbol = post_data['symbol']
-        side = post_data['side']  # BUY or SELL
+        side = post_data['side']
         amount = float(post_data['amount'])
         price = float(post_data['price'])
 
-        exchange = ccxt.binance({
-            'apiKey': "cd7c7de7b3068e692c46194d62f2b58031fa7961456edbd65f5e9bacb2eb7f33",
-            'secret': "85db7398d30172cad2d2cf0c44ee43e846e00747bb75eea2bf3c16ca4186b50c",
-            'enableRateLimit': True,
-            'options': {
-                'defaultType': 'future',
-            },
-        })
-        exchange.set_sandbox_mode(True)
-        exchange.verbose = True
+        exchange = initialize_ccxt()
 
         order = exchange.create_order(symbol=symbol,
                                       side=side,
