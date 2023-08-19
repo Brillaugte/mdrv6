@@ -11,7 +11,7 @@ import DeployPriceFeedComponent from './components/MDRV/deployPriceFeed';
 import QuoteDisplayComponent from './components/display/quoteComponent';
 import BalanceComponent from './components/display/balanceComponent';
 import BinanceOpenTradeComponent from './components/binance/binanceOpenTradeComponent';
-//import AssetSelector from './components/MDRV/AssetSelector';
+import AssetSelector from './components/MDRV/AssetSelector';
 
 
 const Myaddress = "0xd0dDF915693f13Cf9B3b69dFF44eE77C901882f8";
@@ -39,6 +39,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         </Layout>
         <div>
         <DepositComponent />
+        <AssetSelector
+        initialA3={selectedAssetAddress}
+        onAssetSelected={handleAssetSelection}
+      />
         <PythComponent />
         <DeployPriceFeedComponent />
         <QuoteDisplayComponent />
@@ -57,9 +61,3 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp;
-/*
-<AssetSelector
-        initialA3={selectedAssetAddress}
-        onAssetSelected={handleAssetSelection}
-      />
-        <PythComponent _address={selectedAssetAddress} />*/
