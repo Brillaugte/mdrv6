@@ -1,8 +1,9 @@
     import React, { useState, useEffect } from 'react';
     import { EvmPriceServiceConnection } from "@pythnetwork/pyth-evm-js";
-    import AssetSelector from './AssetSelector';
+    import AssetSelector from '../../../../solidity/AssetSelector';
 
-    export default function PythComponent({ _address }: { _address: string }) {
+    export default function PythComponent() {
+      const _address = "0x300f5ECE2c9D4265C9DA9021582ed1B71F403549";
     const [priceIds, setPriceIds] = useState<string[]>([]);
     const [currentId, setCurrentId] = useState('');
     const [updateData, setUpdateData] = useState<any[]>([]);

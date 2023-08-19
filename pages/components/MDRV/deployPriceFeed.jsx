@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Web3Button } from '@thirdweb-dev/react';
-import AssetSelector from './AssetSelector'; // Import the AssetSelector component
+import AssetSelector from '../../../../solidity/AssetSelector'; // Import the AssetSelector component
 
 export default function Component() {
   const [a1, setA1] = useState('');
